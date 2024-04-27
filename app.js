@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const mongodb = require('./src/database/mongodb/connection')
 
+const categoriesRouter = require('./routes/categories')
 const usersRouter = require('./routes/users')
 
 mongodb()
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+app.use('/api', categoriesRouter)
 app.use('/users', usersRouter)
 
 module.exports = app
